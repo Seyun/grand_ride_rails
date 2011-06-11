@@ -15,6 +15,16 @@ class RidesController < ApplicationController
   def show
     @ride = Ride.find(params[:id])
 
+    @map_url ='http://maps.google.com/maps/api/staticmap?size=512x512&sensor=false&path=color:0x0000ff|weight:5|enc:'
+
+    encoder = GmapPolylineEncoder.new
+    points = Array.new
+    @ride.tracks.each_with_index do |t, index|
+      points[index] = [t.latitude, t.longitude]
+    end
+
+    @map_url << encoder.encode(points)[:points]
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @ride }
@@ -80,4 +90,5 @@ class RidesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
 end

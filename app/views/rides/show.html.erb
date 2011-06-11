@@ -5,6 +5,9 @@
   <%= @ride.passengerUuid %>
 </p>
 
+
+<img src="<%=raw @map_url %>" />
+<br/>
 <% @ride.tracks.each do |track| %>
     <p>
       <b>Time:</b>
@@ -16,7 +19,6 @@
       <b>Longitude:</b>
       <%= track.longitude %>
       <br/>
-
     </p>
 <%end%>
 
