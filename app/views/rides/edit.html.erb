@@ -1,0 +1,23 @@
+<h1>Editing ride</h1>
+
+<h2>Add a track:</h2>
+<%= form_for([@ride, @ride.tracks.build]) do |t| %>
+  <div class="field">
+    <%= t.label :latitude %><br />
+    <%= t.text_field :latitude %>
+  </div>
+  <div class="field">
+    <%= t.label :longitude %><br />
+    <%= t.text_field :longitude %>
+  </div>
+  <div class="actions">
+    <%= t.submit %>
+  </div>
+<% end %>
+
+<br />
+
+<!--<%= render 'form' %>-->
+
+<%= link_to 'Show', @ride %> |
+<%= link_to 'Back', rides_path %>

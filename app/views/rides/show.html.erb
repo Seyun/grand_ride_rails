@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Passenger UUID:</b>
+  <%= @ride.passengerUuid %>
+</p>
+
+<% @ride.tracks.each do |track| %>
+    <p>
+      <b>Time:</b>
+      <%= track.created_at %>
+      <br/>
+      <b>Latitude:</b>
+      <%= track.latitude %>
+      <br/>
+      <b>Longitude:</b>
+      <%= track.longitude %>
+      <br/>
+
+    </p>
+<%end%>
+
+<%= link_to 'Edit', edit_ride_path(@ride) %> |
+<%= link_to 'Back', rides_path %>
