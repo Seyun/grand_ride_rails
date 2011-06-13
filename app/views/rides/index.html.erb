@@ -10,7 +10,7 @@
 
 <% @rides.each do |ride| %>
   <tr>
-    <td><%= ride.passengerUuid %></td>
+    <td><%= ride.passenger_uuid %></td>
     <td><%= link_to 'Show', ride %></td>
     <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
     <td><%= link_to 'Destroy', ride, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -7,6 +7,7 @@ class RidesController < ApplicationController
     respond_to do |format|
       format.html # index_old.html.erb
       format.xml  { render :xml => @rides }
+      format.json { render :json => @rides }
     end
   end
 

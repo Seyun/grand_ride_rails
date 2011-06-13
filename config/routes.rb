@@ -3,6 +3,8 @@ GrandRideRails::Application.routes.draw do
     resources :tracks
   end
 
+  resources :ride_monitors
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

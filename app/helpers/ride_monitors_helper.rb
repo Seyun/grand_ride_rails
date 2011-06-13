@@ -1,0 +1,2 @@
+module RideMonitorsHelper
+end
