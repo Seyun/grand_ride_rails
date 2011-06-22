@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110612110726) do
+ActiveRecord::Schema.define(:version => 20110622095113) do
 
   create_table "ride_monitors", :force => true do |t|
     t.string   "email"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20110612110726) do
     t.string   "passenger_uuid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",         :default => 0
   end
 
   create_table "tracks", :force => true do |t|
