@@ -1,11 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  latitude: 1.5
-  longitude: 1.5
-  timestamp: 2011-06-11 12:43:21
-
-two:
-  latitude: 1.5
-  longitude: 1.5
-  timestamp: 2011-06-11 12:43:21
+  id: 1
+  passenger_uuid: 010-2356-3363

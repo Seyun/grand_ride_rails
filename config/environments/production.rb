@@ -48,4 +48,6 @@ GrandRideRails::Application.configure do
   config.active_support.deprecation = :notify
 
   GOOGLE_APPLICATION_ID = "ABQIAAAA1ueOo2Y8BfgoeNWMMxyv0BQv9WWbqCPkZmO_HlgdkkIMIBr8QxSRcXSlzTdMEpiDpHTn70sU3I56JQ"
+
+  config.action_mailer.default_url_options = { :host => 'grandride.heroku.com' }
 end

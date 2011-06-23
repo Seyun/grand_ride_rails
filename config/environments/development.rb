@@ -23,6 +23,20 @@ GrandRideRails::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  # smtp
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address  => "smtp.gmail.com",
+      :port     => "587",
+      :domain   => "grandride.heroku.com",
+      :authentication => "plain",
+      :user_name  => "support@ppassa.com",
+      :password   => "comleisure",
+      :enable_starttls_auto => true
+  }
+
   GOOGLE_APPLICATION_ID = "ABQIAAAA3HdfrnxFAPWyY-aiJUxmqRTJQa0g3IQ9GZqIMmInSLzwtGDKaBQ0KYLwBEKSM7F9gCevcsIf6WPuIQ"
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end
 

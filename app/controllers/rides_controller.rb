@@ -55,6 +55,7 @@ class RidesController < ApplicationController
 
     respond_to do |format|
       if @ride.save
+        Notifier.checked_in(@ride).deliver
         format.html { redirect_to(@ride, :notice => 'Ride was successfully created.') }
         format.xml  { render :xml => @ride, :status => :created, :location => @ride }
       else

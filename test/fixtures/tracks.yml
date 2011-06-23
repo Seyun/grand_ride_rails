@@ -1,11 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  latitude: 1.5
-  longitude: 1.5
-  timestamp: 2011-06-11 15:04:39
 
-two:
-  latitude: 1.5
-  longitude: 1.5
-  timestamp: 2011-06-11 15:04:39
+track1:
+  latitude: 1
+  longitude: 2
+  ride_id: 1
+
+track2:
+  latitude: 1.1
+  longitude: 2.3
+  ride_id: 1
