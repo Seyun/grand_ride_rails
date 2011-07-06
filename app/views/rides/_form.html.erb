@@ -15,13 +15,22 @@
     <%= f.label :passenger_uuid %><br />
     <%= f.text_field :passenger_uuid %>
   </div>
-  <div id="ride_monitors">
+  <!-- <div id="ride_monitors">
   	<%= render :partial => 'ride_monitor', :collection => @ride.ride_monitors %>
-  </div>
+  </div> -->
   <p>
-  	<%= add_ride_monitor_link "Add a ride monitor" %>
+  	<% f.fields_for :children do |child_form| %>
+  		<%= child_form.label :email %>
+  		<%= child_form.text_field :email %>
+  		
+  		<% unless child_form.object.new_record? %>
+  			<%= child_form.check_box '_destroy' %>
+  			<%= child_form.label '_destroy', 'Remove' %>
+  		<% end %>
+  	<% end %>
+  	<!-- <%= add_ride_monitor_link "Add a ride monitor" %> -->
   </p>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag %>
   </div>
 <% end %>
