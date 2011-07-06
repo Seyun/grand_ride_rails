@@ -36,7 +36,7 @@ class RidesController < ApplicationController
   # GET /rides/new.xml
   def new
     @ride = Ride.new
-
+    @ride.ride_monitors.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @ride }

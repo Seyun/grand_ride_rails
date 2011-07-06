@@ -12,9 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :PassengerUUID %><br />
+    <%= f.label :passenger_uuid %><br />
     <%= f.text_field :passenger_uuid %>
   </div>
+  <div id="ride_monitors">
+  	<%= render :partial => 'ride_monitor', :collection => @ride.ride_monitors %>
+  </div>
+  <p>
+  	<%= add_ride_monitor_link "Add a ride monitor" %>
+  </p>
   <div class="actions">
     <%= f.submit %>
   </div>

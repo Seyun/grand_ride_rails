@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>grand_ride_rails</name>
+=======
+	<name>aptana</name>
+>>>>>>> f22f44c3cc2e143ddfe6f606786619b6e1a88e06
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
+=======
+		<buildCommand>
+			<name>com.aptana.ide.core.unifiedBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.radrails.rails.core.railsnature</nature>
+		<nature>com.aptana.ruby.core.rubynature</nature>
+>>>>>>> f22f44c3cc2e143ddfe6f606786619b6e1a88e06
 	</natures>
 </projectDescription>
