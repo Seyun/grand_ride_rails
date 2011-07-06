@@ -1,26 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Passenger UUID:</b>
-  <%= @ride.passenger_uuid %>
+<p id="notice">
+	<%= notice %>
 </p>
 
+<p>
+	<b>Passenger UUID:</b>
+	<%= @ride.passenger_uuid %>
+</p>
 
-<img src="<%=raw @map_url %>" />
+<img src="<%= raw @map_url %>" />
+<br/>
+<% @ride.ride_monitors.each do |monitor| %>
+<p>
+	<b>Monitor:</b>
+	<%= monitor.email %>
+</p>
+<% end %>
 <br/>
 <% @ride.tracks.each do |track| %>
-    <p>
-      <b>Time:</b>
-      <%= track.created_at %>
-      <br/>
-      <b>Latitude:</b>
-      <%= track.latitude %>
-      <br/>
-      <b>Longitude:</b>
-      <%= track.longitude %>
-      <br/>
-    </p>
-<%end%>
-<%= link_to 'here', ride_url(@ride) %>
+<p>
+	<b>Time:</b>
+	<%= track.created_at %>
+	<br/>
+	<b>Latitude:</b>
+	<%= track.latitude %>
+	<br/>
+	<b>Longitude:</b>
+	<%= track.longitude %>
+	<br/>
+</p>
+<% end %>
 <%= link_to 'Edit', edit_ride_path(@ride) %> |
 <%= link_to 'Back', rides_path %>

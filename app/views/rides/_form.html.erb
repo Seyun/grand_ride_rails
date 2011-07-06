@@ -19,14 +19,16 @@
   	<%= render :partial => 'ride_monitor', :collection => @ride.ride_monitors %>
   </div> -->
   <p>
-  	<% f.fields_for :children do |child_form| %>
-  		<%= child_form.label :email %>
+  	<% f.fields_for :ride_monitors do |child_form| %>
+  		<%= child_form.label :email, "Monitor Email:" %>
   		<%= child_form.text_field :email %>
   		
-  		<% unless child_form.object.new_record? %>
-  			<%= child_form.check_box '_destroy' %>
-  			<%= child_form.label '_destroy', 'Remove' %>
-  		<% end %>
+  		<% if child_form.object != nil %>
+	  		<% unless child_form.object.new_record? %>
+	  			<%= child_form.check_box '_destroy' %>
+	  			<%= child_form.label '_destroy', 'Remove' %>
+	  		<% end %>
+		<% end %>
   	<% end %>
   	<!-- <%= add_ride_monitor_link "Add a ride monitor" %> -->
   </p>
