@@ -1,0 +1,10 @@
+<div>
+	<% if @ride.status == Ride::CHECKED_IN	%>
+		<p><%= @ride.created_at.strftime("You have checked in at %I:%M%p") %></p>
+		<%= link_to "Check out", :action => :check_out, :id => @ride.id %>
+	<% end %>
+	<% if @ride.status == Ride::CHECKED_OUT %>
+		<p>You have checked out</p>
+		<%= link_to "Check in", :action => :new %>
+	<% end %>
+</div>

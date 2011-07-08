@@ -12,13 +12,6 @@
 	</ul>
 </div>
 <% end %>
-
-<p>
-	<%= f.label :passenger_uuid %>
-	<br />
-	<%= f.text_field :passenger_uuid %>
-</p>
-
 <%= f.fields_for :ride_monitors do |builder| %>
 <%= render "ride_monitor_fields", :f => builder %>
 <% end %>
@@ -26,6 +19,6 @@
 	<%= link_to_add_fields "Add Monitor", f, :ride_monitors %>
 </p>
 <p>
-	<%= f.submit "Submit" %>
+	<%= f.submit "Check in" %>
 </p>
 <% end %>

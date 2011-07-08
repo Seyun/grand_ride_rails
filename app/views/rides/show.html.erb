@@ -2,11 +2,6 @@
 	<%= notice %>
 </p>
 
-<p>
-	<b>Passenger UUID:</b>
-	<%= @ride.passenger_uuid %>
-</p>
-
 <img src="<%= raw @map_url %>" />
 <br/>
 <% @ride.ride_monitors.each do |monitor| %>
