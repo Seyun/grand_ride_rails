@@ -1,8 +1,10 @@
 <% if @ride.status == Ride::CHECKED_IN %>
 	<% javascript_tag do %>
-		alert("good");
-		alert(Android.ensureTracking(<%= @ride.id %>));
-		
+		function recordTrack(latitude, longitude) {
+			var msg = "Latitude: " + latitude + ", Longitude: " + longitude;
+			alert(msg);
+		}
+		Android.ensureTracking(<%= @ride.id %>);	
 	<% end %>
 <% end %>
 <div>
