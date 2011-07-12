@@ -4,7 +4,8 @@
 			var msg = "Latitude: " + latitude + ", Longitude: " + longitude;
 			alert(msg);
 		}
-		Android.ensureTracking(<%= @ride.id %>);	
+		//$.get('toapp://ensureTracking');
+		window.location.replace("toapp://ensureTracking");	
 	<% end %>
 <% end %>
 <div>
