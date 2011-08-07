@@ -39,5 +39,6 @@
 	<% if @ride.status == Ride::CHECKED_OUT %>
 		<p>You have checked out</p>
 		<%= link_to "Check in", :action => :new %>
+		<img src="<%= raw @map_url %>" />
 	<% end %>
 </div>
