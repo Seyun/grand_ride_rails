@@ -118,7 +118,7 @@ class RidesController < ApplicationController
     end
   end
 
-  # POST /record_track/1
+  # GET /record_track/1
   def record_track
     @ride = Ride.find(params[:id])  
     @track = Track.new(:ride_id => @ride.id, :latitude => params[:latitude], :longitude => params[:longitude])
