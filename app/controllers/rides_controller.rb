@@ -79,11 +79,16 @@ class RidesController < ApplicationController
     
     respond_to do |format|
       if @ride.save
+        if params[:monitor] != nil
+          monitor_email = params[:monitor][:name]
+          if monitor_email != nil
+            ride_monitor = RideMonitor.new(:email => monitor_email, :ride_id => @ride.id)
+            ride_monitor.save!
+          end
+        end
+        
         Notifier.checked_in(@ride).deliver
-        # redirect_to :controller => 'rides', :action => 'show_status', :id => @ride.id
         format.html { redirect_to :action => 'show_status', :id => @ride.id }
-        # format.html { redirect_to(@ride, :notice => 'Ride was successfully created.') }
-        # format.xml  { render :xml => @ride, :status => :created, :location => @ride }
       else
         format.html { render :json => "error" }
         # format.html { render :action => "new" }
