@@ -17,15 +17,7 @@ class RidesController < ApplicationController
   def show
     @ride = Ride.find(params[:id])
 
-    @map_url ='http://maps.google.com/maps/api/staticmap?size=512x512&sensor=false&path=color:0x0000ff|weight:5|enc:'
-
-    encoder = GmapPolylineEncoder.new
-    points = Array.new
-    @ride.tracks.each_with_index do |t, index|
-      points[index] = [t.latitude, t.longitude]
-    end
-
-    @map_url << encoder.encode(points)[:points]
+    @map_url = get_map_url(@ride.tracks)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -33,6 +25,17 @@ class RidesController < ApplicationController
     end
   end
 
+  def get_map_url(tracks)
+    map_url ='http://maps.google.com/maps/api/staticmap?size=512x512&sensor=false&path=color:0x0000ff|weight:5|enc:'
+    encoder = GmapPolylineEncoder.new
+    points = Array.new
+    tracks.each_with_index do |t, index|
+      points[index] = [t.latitude, t.longitude]
+    end
+
+    map_url << encoder.encode(points)[:points]
+    return map_url
+  end
   # GET /rides/new
   # GET /rides/new.xml
   def new
@@ -60,7 +63,7 @@ class RidesController < ApplicationController
   
   def show_status
     @ride = Ride.find(params[:id])
-    
+    @map_url = get_map_url(@ride.tracks)
     respond_to do |format|
       format.html
     end
@@ -115,6 +118,15 @@ class RidesController < ApplicationController
     end
   end
 
+  # POST /record_track/1
+  def record_track
+    @ride = Ride.find(params[:id])  
+    @track = Track.new(:ride_id => @ride.id, :latitude => params[:latitude], :longitude => params[:longitude])
+    @track.save!
+    
+    redirect_to :action => 'show_status', :id => @ride.id
+  end
+  
   # DELETE /rides/1
   # DELETE /rides/1.xml
   def destroy
