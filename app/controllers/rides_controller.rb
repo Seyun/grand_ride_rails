@@ -26,7 +26,7 @@ class RidesController < ApplicationController
   end
 
   def get_map_url(tracks)
-    map_url ='http://maps.google.com/maps/api/staticmap?size=512x512&sensor=false&path=color:0x0000ff|weight:5|enc:'
+    map_url ='http://maps.google.com/maps/api/staticmap?size=400x400&sensor=false&path=color:0x0000ff|weight:5|enc:'
     encoder = GmapPolylineEncoder.new
     points = Array.new
     tracks.each_with_index do |t, index|
