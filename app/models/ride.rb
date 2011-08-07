@@ -1,10 +1,11 @@
 class Ride < ActiveRecord::Base
-  has_many :tracks,         :dependent => :destroy
-  has_many :ride_monitors,  :dependent => :destroy
+  CHECKED_IN = 1
+  CHECKED_OUT = 2
+  
+  has_many :tracks, :dependent => :destroy
+  has_many :ride_monitors, :dependent => :destroy
 
-  def ride_monitor_attributes=(ride_monitor_attributes)
-    ride_monitor_attributes.each do |attributes|
-      ride_monitors.build(attributes)
-    end
-  end
+  accepts_nested_attributes_for :tracks, :allow_destroy => true
+  accepts_nested_attributes_for :ride_monitors, :allow_destroy => true
+
 end

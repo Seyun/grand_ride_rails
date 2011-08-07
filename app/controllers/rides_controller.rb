@@ -1,4 +1,5 @@
 class RidesController < ApplicationController
+
   # GET /rides
   # GET /rides.xml
   def index
@@ -35,14 +36,36 @@ class RidesController < ApplicationController
   # GET /rides/new
   # GET /rides/new.xml
   def new
-    @ride = Ride.new
+    @ride = Ride.new    
     @ride.ride_monitors.build
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @ride }
     end
   end
-
+  
+  # GET /rides/1/check_out
+  def check_out
+    @ride = Ride.find(params[:id])
+    @ride.status = Ride::CHECKED_OUT
+    
+    respond_to do |format|
+      if @ride.save
+        format.html { redirect_to :action => 'show_status', :id => @ride.id }
+      else
+        format.html { render :json => "error" }
+      end
+    end
+  end
+  
+  def show_status
+    @ride = Ride.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+    end
+  end
+  
   # GET /rides/1/edit
   def edit
     @ride = Ride.find(params[:id])
@@ -52,15 +75,26 @@ class RidesController < ApplicationController
   # POST /rides.xml
   def create
     @ride = Ride.new(params[:ride])
-
+    @ride.status = Ride::CHECKED_IN
+    monitor_email = params[:monitor][:email]
+    
     respond_to do |format|
       if @ride.save
+        if params[:monitor] != nil
+          monitor_email = params[:monitor][:email]
+          if monitor_email != nil
+            ride_monitor = RideMonitor.new(:email => monitor_email, :ride_id => @ride.id)
+            ride_monitor.save!
+            logger.info "ride created, monitor: " + monitor_email
+          end
+        end
+        
         Notifier.checked_in(@ride).deliver
-        format.html { redirect_to(@ride, :notice => 'Ride was successfully created.') }
-        format.xml  { render :xml => @ride, :status => :created, :location => @ride }
+        format.html { redirect_to :action => 'show_status', :id => @ride.id }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @ride.errors, :status => :unprocessable_entity }
+        format.html { render :json => "error" }
+        # format.html { render :action => "new" }
+        # format.xml  { render :xml => @ride.errors, :status => :unprocessable_entity }
       end
     end
   end

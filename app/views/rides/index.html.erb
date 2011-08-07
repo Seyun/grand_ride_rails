@@ -1,8 +1,10 @@
+<%= link_to 'New Ride', new_ride_path %>
+
 <h1>Listing rides</h1>
 
 <table>
   <tr>
-    <th>Uuid</th>
+    <th>id</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,7 +12,7 @@
 
 <% @rides.each do |ride| %>
   <tr>
-    <td><%= ride.passenger_uuid %></td>
+	<td><%= ride.id %></td>
     <td><%= link_to 'Show', ride %></td>
     <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
     <td><%= link_to 'Destroy', ride, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -20,4 +22,4 @@
 
 <br />
 
-<%= link_to 'New Ride', new_ride_path %>
+
