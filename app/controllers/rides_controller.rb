@@ -76,14 +76,16 @@ class RidesController < ApplicationController
   def create
     @ride = Ride.new(params[:ride])
     @ride.status = Ride::CHECKED_IN
+    monitor_email = params[:monitor][:email]
     
     respond_to do |format|
       if @ride.save
         if params[:monitor] != nil
-          monitor_email = params[:monitor][:name]
+          monitor_email = params[:monitor][:email]
           if monitor_email != nil
             ride_monitor = RideMonitor.new(:email => monitor_email, :ride_id => @ride.id)
             ride_monitor.save!
+            logger.info "ride created, monitor: " + monitor_email
           end
         end
         
