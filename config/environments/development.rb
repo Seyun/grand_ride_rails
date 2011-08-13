@@ -38,5 +38,7 @@ GrandRideRails::Application.configure do
   GOOGLE_APPLICATION_ID = "ABQIAAAA3HdfrnxFAPWyY-aiJUxmqRTJQa0g3IQ9GZqIMmInSLzwtGDKaBQ0KYLwBEKSM7F9gCevcsIf6WPuIQ"
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.time_zone = 'Seoul'
 end
 

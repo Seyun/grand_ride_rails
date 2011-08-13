@@ -1,5 +1,6 @@
 <% if @ride.status == Ride::CHECKED_IN %>
 	<% javascript_tag do %>
+<<<<<<< HEAD
 		function recordTrack(latitude, longitude) {
 			//var msg = "Latitude: " + latitude + ", Longitude: " + longitude;
 			//alert(msg);
@@ -11,16 +12,48 @@
 		//$.get('toapp://ensureTracking');
 		window.location.replace("toapp://ensureTracking");
 	  
+=======
+		function record_track(latitude, longitude) {
+			// post location
+			var url = "/rides/" + <%= @ride.id.to_s %> + "/record_track";
+			$.get(url, {latitude: latitude, longitude: longitude });
+		}
+		
+		function success_callback(p)
+		{
+			record_track(p.coords.latitude, p.coords.longitude);
+		}
+		
+		function error_callback(p)
+		{
+			alert('error='+p.code);
+		}
+		//$.get('toapp://ensureTracking');
+		//window.location.replace("toapp://ensureTracking");	
+		
+		// refresh after 5 sec.
+		setTimeout("location.reload(true);",5000);
+		
+		geo_position_js.init();
+		geo_position_js.getCurrentPosition(success_callback,error_callback);
+>>>>>>> abf51c7e75a01afc5e32490021e923115455b433
 	<% end %>
 <% end %>
-<div>
+<div data-role="header">
+	<h1>Your status</h1>
+</div>
+
+<div data-role="content">
 	<% if @ride.status == Ride::CHECKED_IN	%>
 		<p><%= @ride.created_at.strftime("You have checked in at %I:%M%p") %></p>
-		<%= link_to "Check out", :action => :check_out, :id => @ride.id %>
+		<p>Tracking your locations...</p><br/>
+		<%= link_to "Check out", :action => :check_out, :id => @ride.id %><br/>
+		<img src="<%= raw @map_url %>" />
 	<% end %>
 	<% if @ride.status == Ride::CHECKED_OUT %>
 		<p>You have checked out</p>
 		<%= link_to "Check in", :action => :new %>
+		<img src="<%= raw @map_url %>" />
 	<% end %>
 	<input type="button" value="Reload Page" onClick="window.location.reload()">
 </div>

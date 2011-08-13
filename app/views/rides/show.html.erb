@@ -1,37 +1,38 @@
-<p id="notice">
-	<%= notice %>
-</p>
-
-<img src="<%= raw @map_url %>" />
-<br/>
-<% @ride.ride_monitors.each do |monitor| %>
-<p>
-	<b>Monitor:</b>
-	<%= monitor.email %>
-</p>
-<% end %>
-<br/>
-<% @ride.tracks.each do |track| %>
-<p>
-	<b>Time:</b>
-	<%= track.created_at %>
+<div data-role="header">
+	<p id="notice">
+		<%= notice %>
+	</p>
+</div>
+<div data-role="content">
+	<img src="<%= raw @map_url %>" />
 	<br/>
-	<b>Latitude:</b>
-	<%= track.latitude %>
+	<!-- <% @ride.ride_monitors.each do |monitor| %>
+	<p>
+		<b>Monitor:</b>
+		<%= monitor.email %>
+	</p>
+	<% end %>
 	<br/>
-	<b>Longitude:</b>
-	<%= track.longitude %>
-	<br/>
-</p>
-<% end %>
-<%= link_to 'Edit', edit_ride_path(@ride) %> |
-<%= link_to 'Back', rides_path %>
 
+    <% javascript_tag do %>
+    function timedRefresh(timeoutPeriod) {
+      //alert('refresh')
+    	setTimeout("location.reload(true);",timeoutPeriod);
+    }
+    timedRefresh(1000);
 
-<% javascript_tag do %>
-function timedRefresh(timeoutPeriod) {
-  //alert('refresh')
-	setTimeout("location.reload(true);",timeoutPeriod);
-}
-timedRefresh(1000);
-<% end %>
+	<% @ride.tracks.each do |track| %>
+	<p>
+		<b>Time:</b>
+		<%= track.created_at %>
+		<br/>
+		<b>Latitude:</b>
+		<%= track.latitude %>
+		<br/>
+		<b>Longitude:</b>
+		<%= track.longitude %>
+		<br/>
+	</p> 
+	<% end %> -->
+</div>
+>>>>>>> abf51c7e75a01afc5e32490021e923115455b433

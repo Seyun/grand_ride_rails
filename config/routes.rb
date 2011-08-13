@@ -3,7 +3,8 @@ GrandRideRails::Application.routes.draw do
     member do
       get 'show_status'
       get 'check_out'
-      get 'update_pos'
+      #get 'update_pos'
+      get 'record_track'
     end 
     resources :tracks    
   end
@@ -16,6 +17,8 @@ GrandRideRails::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
+  
+  #match '/record_track/:id' => 'rides#record_track'
   
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -59,11 +62,12 @@ GrandRideRails::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index_old.html.
-  root :to => "rides#index"
+  root :to => "rides#new"
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  
 end
