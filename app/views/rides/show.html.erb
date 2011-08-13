@@ -26,3 +26,12 @@
 <% end %>
 <%= link_to 'Edit', edit_ride_path(@ride) %> |
 <%= link_to 'Back', rides_path %>
+
+
+<% javascript_tag do %>
+function timedRefresh(timeoutPeriod) {
+  //alert('refresh')
+	setTimeout("location.reload(true);",timeoutPeriod);
+}
+timedRefresh(1000);
+<% end %>

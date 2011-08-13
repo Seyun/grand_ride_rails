@@ -1,11 +1,16 @@
 <% if @ride.status == Ride::CHECKED_IN %>
 	<% javascript_tag do %>
 		function recordTrack(latitude, longitude) {
-			var msg = "Latitude: " + latitude + ", Longitude: " + longitude;
-			alert(msg);
+			//var msg = "Latitude: " + latitude + ", Longitude: " + longitude;
+			//alert(msg);
+  			
+  		$.get('/rides/<%= @ride.id %>/update_pos/',
+  		    {'lat' : latitude, 'lon': longitude}
+      );			
 		}
 		//$.get('toapp://ensureTracking');
-		window.location.replace("toapp://ensureTracking");	
+		window.location.replace("toapp://ensureTracking");
+	  
 	<% end %>
 <% end %>
 <div>
@@ -17,4 +22,5 @@
 		<p>You have checked out</p>
 		<%= link_to "Check in", :action => :new %>
 	<% end %>
+	<input type="button" value="Reload Page" onClick="window.location.reload()">
 </div>
