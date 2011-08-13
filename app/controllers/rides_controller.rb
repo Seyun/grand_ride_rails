@@ -119,5 +119,22 @@ class RidesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-
+  
+  def update_pos
+    @ride = Ride.find(params[:id])
+    lat = params[:lat]
+    lon = params[:lon]
+    print "Hello update_pos, ride_id #{@ride.id}, latitude #{lat}, longitude #{lon}"
+    @track = @ride.tracks.create :latitude => lat, :longitude => lon
+    print "Created track #{@track}"
+    
+    respond_to do |format|
+      #if @ride.save
+      #  format.html { redirect_to :action => 'show_status', :id => @ride.id }
+      #else
+      #  format.html { render :json => "error" }
+      #end
+      format.html { redirect_to :action => 'show_status', :id => @ride.id }
+    end
+  end
 end
