@@ -3,6 +3,7 @@ GrandRideRails::Application.routes.draw do
     member do
       get 'show_status'
       get 'check_out'
+      get 'update_pos'
     end 
     resources :tracks    
   end
