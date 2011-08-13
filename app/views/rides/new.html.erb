@@ -3,6 +3,10 @@
 </div>
 <div data-role="content">
 	<%= render 'form' %>
-
 	<!-- <%= link_to 'Back', rides_path %> -->
 </div>
+
+<% javascript_tag do %>
+var uagent = navigator.userAgent.toLowerCase();
+alert(uagent);
+<% end %>	

@@ -6,7 +6,8 @@
 <div data-role="content">
 	<img src="<%= raw @map_url %>" />
 	<br/>
-	<!-- <% @ride.ride_monitors.each do |monitor| %>
+
+	<% @ride.ride_monitors.each do |monitor| %>
 	<p>
 		<b>Monitor:</b>
 		<%= monitor.email %>
@@ -20,7 +21,8 @@
     	setTimeout("location.reload(true);",timeoutPeriod);
     }
     timedRefresh(1000);
-
+    <% end %>
+    
 	<% @ride.tracks.each do |track| %>
 	<p>
 		<b>Time:</b>
@@ -33,6 +35,6 @@
 		<%= track.longitude %>
 		<br/>
 	</p> 
-	<% end %> -->
+    <% end %>
+	
 </div>
->>>>>>> abf51c7e75a01afc5e32490021e923115455b433

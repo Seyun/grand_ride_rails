@@ -36,6 +36,7 @@ class RidesController < ApplicationController
     map_url << encoder.encode(points)[:points]
     return map_url
   end
+  
   # GET /rides/new
   # GET /rides/new.xml
   def new
@@ -156,4 +157,13 @@ class RidesController < ApplicationController
       format.html { redirect_to :action => 'show_status', :id => @ride.id }
     end
   end
+  
+  def mapurl
+    @ride = Ride.find(params[:id])
+    @val = get_map_url(@ride.tracks)
+    respond_to do |format|
+        format.json { render :json => @val.to_json }
+    end    
+  end
+
 end

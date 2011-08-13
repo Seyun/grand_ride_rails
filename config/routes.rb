@@ -5,6 +5,7 @@ GrandRideRails::Application.routes.draw do
       get 'check_out'
       #get 'update_pos'
       get 'record_track'
+      get 'mapurl'
     end 
     resources :tracks    
   end

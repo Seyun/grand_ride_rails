@@ -13,3 +13,21 @@ function add_fields(link, association, content) {
     before: content.replace(regexp, new_id)
   });
 }
+
+function is_android() {
+    var uagent = navigator.userAgent.toLowerCase();
+    if (uagent.search('android') >= 0)
+        return true;
+    else
+        return false;
+}
+
+function is_iphone() {
+    var uagent = navigator.userAgent.toLowerCase();
+    if (uagent.search('iphone') >= 0)
+        return true;
+    else
+        return false;
+}
+
+
