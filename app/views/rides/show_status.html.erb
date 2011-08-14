@@ -1,16 +1,21 @@
 <% if @ride.status == Ride::CHECKED_IN %>
 	<% javascript_tag do %>
 	    // not used
-		function recordTrack_wonho(latitude, longitude) {
-			$.get('/rides/<%= @ride.id %>/update_pos/',
-      		    {'lat' : latitude, 'lon': longitude}
-            );			
+		function record_track_android_lv10(latitude, longitude) {
+			// post location
+			var url = "/rides/" + <%= @ride.id.to_s %> + "/record_track";
+		    $.get(url, {latitude: latitude, longitude: longitude });
+		    window.location.reload(true);
 		}
 		
 		function record_track(latitude, longitude) {
 			// post location
 			var url = "/rides/" + <%= @ride.id.to_s %> + "/record_track";
 		    $.get(url, {latitude: latitude, longitude: longitude });
+		}
+		
+		function reload_page() {
+		    window.location.reload(true);
 		}
 		
 		function success_callback(p)
@@ -35,7 +40,14 @@
 		
 		if (is_android() == true) {
     		//$.get('toapp://ensureTracking');
-    		window.location.replace("toapp://ensureTracking");	
+    		//window.location.replace("toapp://ensureTracking");
+    		//Android.startTracking();
+    		//alert('call Android');
+    		//m = Android.get_test();
+    		//alert('okay! ');
+    		//setTimeout("location.reload(true);", 5000);
+    		//window.location.replace("toapp://ensureTracking");
+    		setTimeout("window.location.replace('toapp://ensureTracking');", 3000);
     	} else if (is_iphone() == true) {
         	// refresh after 5 sec.
     		setTimeout("location.reload(true);", 5000);
@@ -45,6 +57,7 @@
     	    var msg = 'Who are you?';
     	    alert(msg);
     	}
+    	
 	<% end %>
 <% end %>
 <div data-role="header">
